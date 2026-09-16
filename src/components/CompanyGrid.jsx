@@ -69,28 +69,7 @@ export default function CompanyGrid() {
 
   return (
     <div>
-      <section className="hero-header">
-        <div className="hero-title-row">
-          <div className="hero-main">
-            <h1>Company Catalog</h1>
-            <p className="hero-subtitle">
-              Browse interview questions across 470+ engineering organizations and quant trading firms.
-            </p>
-          </div>
 
-          <div className="hero-stats-banner">
-            <div className="stat-item">
-              <span className="stat-label">Companies</span>
-              <span className="stat-number">{companies.length}</span>
-            </div>
-            <div style={{ width: 1, height: 32, background: 'var(--border-subtle)' }} />
-            <div className="stat-item">
-              <span className="stat-label">Total Problems</span>
-              <span className="stat-number">3,392</span>
-            </div>
-          </div>
-        </div>
-      </section>
       <div className="category-filter-bar">
         {CATEGORIES.map((cat) => {
           const isFav = cat === 'Favorites';
@@ -148,11 +127,7 @@ export default function CompanyGrid() {
           </select>
         </div>
       </div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
-        <span style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
-          Showing <strong>{displayedList.length}</strong> of <strong>{filteredCompanies.length}</strong> companies
-        </span>
-      </div>
+
       {displayedList.length > 0 ? (
         <div className="company-grid">
           {displayedList.map((company) => (

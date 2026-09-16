@@ -46,35 +46,7 @@ export default function CompanyCard({ company }) {
           <Star size={18} fill={isFav ? 'var(--accent-lc)' : 'none'} />
         </button>
       </div>
-      <div className="company-card-stats">
-        <div className="card-stat-box">
-          <span className="card-stat-num easy">{easy}</span>
-          <span className="card-stat-lbl">Easy</span>
-        </div>
-        <div className="card-stat-box">
-          <span className="card-stat-num medium">{medium}</span>
-          <span className="card-stat-lbl">Med</span>
-        </div>
-        <div className="card-stat-box">
-          <span className="card-stat-num hard">{hard}</span>
-          <span className="card-stat-lbl">Hard</span>
-        </div>
-      </div>
-      <div className="difficulty-bar" title={`Easy: ${easy} | Med: ${medium} | Hard: ${hard}`}>
-        <div className="difficulty-bar-segment easy" style={{ width: `${easyPct}%` }} />
-        <div className="difficulty-bar-segment medium" style={{ width: `${medPct}%` }} />
-        <div className="difficulty-bar-segment hard" style={{ width: `${hardPct}%` }} />
-      </div>
-      {company.topTopics && company.topTopics.length > 0 && (
-        <div className="company-tags-preview">
-          {company.topTopics.slice(0, 3).map((topic) => (
-            <span key={topic} className="tag-pill">{topic}</span>
-          ))}
-          {company.topTopics.length > 3 && (
-            <span className="tag-pill">+{company.topTopics.length - 3}</span>
-          )}
-        </div>
-      )}
+
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.25rem' }}>
         <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
           {company.totalQuestions} Questions
