@@ -50,6 +50,10 @@ export default function HomeTab() {
           <span>Complete 470+ Company Interview Question Sets</span>
         </div>
 
+        <div style={{ display: 'flex', justifyContent: 'center', margin: '2.5rem 0 3rem 0' }}>
+          <img src="/logo-cropped.svg" alt="LeetCompanies" style={{ width: '650px', maxWidth: '95%', height: 'auto', display: 'block' }} />
+        </div>
+
         <h1 className="home-title">
           Crack Tech Interviews with <br />
           <span className="home-title-highlight">Company-Specific</span> LeetCode Prep

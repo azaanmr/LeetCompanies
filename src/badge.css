@@ -1,21 +1,22 @@
-/* Premium Glowing AZN Labs Badge */
+/* Premium Glowing AZN Labs Badge - Theme Color */
 .azn-brand-badge {
   font-size: 0.65rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(168, 85, 247, 0.25));
+  background: linear-gradient(135deg, rgba(255, 161, 22, 0.15), rgba(255, 161, 22, 0.35));
   color: #fff;
   padding: 0.2rem 0.65rem;
   border-radius: 9999px;
-  border: 1px solid rgba(168, 85, 247, 0.4);
-  box-shadow: 0 0 12px rgba(168, 85, 247, 0.25), inset 0 0 5px rgba(255, 255, 255, 0.1);
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+  border: 1px solid rgba(255, 161, 22, 0.5);
+  box-shadow: 0 0 12px rgba(255, 161, 22, 0.35), inset 0 0 5px rgba(255, 255, 255, 0.15);
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
   position: relative;
   overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  white-space: nowrap;
 }
 
 .azn-brand-badge::after {
@@ -25,7 +26,7 @@
   left: -100%;
   width: 50%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
   transform: skewX(-25deg);
   animation: shine 4s infinite;
 }
@@ -37,8 +38,9 @@
 }
 
 [data-theme='light'] .azn-brand-badge {
-  color: #a855f7;
+  color: var(--accent-lc);
   text-shadow: none;
-  background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(168, 85, 247, 0.15));
+  background: linear-gradient(135deg, rgba(255, 161, 22, 0.1), rgba(255, 161, 22, 0.2));
   box-shadow: none;
+  border: 1px solid rgba(255, 161, 22, 0.4);
 }

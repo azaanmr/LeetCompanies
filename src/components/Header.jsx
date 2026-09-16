@@ -36,11 +36,11 @@ export default function Header() {
           <div className="nav-brand-logo">
             <Code2 size={22} strokeWidth={2.5} />
           </div>
-          <div className="nav-brand-text-group">
+          <div className="nav-brand-text-group" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.1rem', marginTop: '0.2rem' }}>
             <div className="nav-brand-text">
-              <span>Leet</span>Companies
+              <img src="/logo-cropped.svg" alt="LeetCompanies" style={{ width: '260px', height: 'auto', display: 'block' }} />
             </div>
-            <span className="azn-brand-badge">BY AZN LABS</span>
+            <span className="azn-brand-badge" style={{ transform: 'scale(0.8)', transformOrigin: 'right top', marginRight: '0.2rem' }}>BY AZN LABS</span>
           </div>
         </div>
         <nav className="nav-tabs">
