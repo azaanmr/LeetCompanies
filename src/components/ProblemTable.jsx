@@ -32,8 +32,6 @@ export default function ProblemTable({
   const [noteText, setNoteText] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(50);
-
-  // Note Modal Handler
   const openNoteModal = (slug) => {
     setActiveNoteSlug(slug);
     setNoteText(notesMap[slug] || '');
@@ -45,8 +43,6 @@ export default function ProblemTable({
       setActiveNoteSlug(null);
     }
   };
-
-  // Pagination calculation
   const totalPages = Math.ceil(problems.length / pageSize) || 1;
   const startIndex = (currentPage - 1) * pageSize;
   const paginatedProblems = problems.slice(startIndex, startIndex + pageSize);
@@ -119,7 +115,6 @@ export default function ProblemTable({
 
             return (
               <tr key={prob.slug || `${prob.title}-${idx}`}>
-                {/* Solved Status */}
                 <td className="status-col">
                   <button
                     className="table-action-btn"
@@ -133,8 +128,6 @@ export default function ProblemTable({
                     )}
                   </button>
                 </td>
-
-                {/* Title & Link */}
                 <td>
                   <a
                     href={prob.link}
@@ -149,15 +142,11 @@ export default function ProblemTable({
                     <ExternalLink size={13} style={{ opacity: 0.5, flexShrink: 0 }} />
                   </a>
                 </td>
-
-                {/* Difficulty Badge */}
                 <td>
                   <span className={`diff-badge ${prob.difficulty}`}>
                     {prob.difficulty}
                   </span>
                 </td>
-
-                {/* Topics Tag List */}
                 <td>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.3rem', maxWidth: '380px' }}>
                     {prob.topics && prob.topics.length > 0 ? (
@@ -174,13 +163,9 @@ export default function ProblemTable({
                     )}
                   </div>
                 </td>
-
-                {/* Acceptance Rate */}
                 <td style={{ fontFamily: 'var(--font-mono)', fontSize: '0.825rem', color: 'var(--text-secondary)' }}>
                   {prob.acceptanceRate || '50.0%'}
                 </td>
-
-                {/* Frequency */}
                 <td>
                   <div className="freq-cell">
                     <span className="freq-val">{freqVal}%</span>
@@ -192,8 +177,6 @@ export default function ProblemTable({
                     </div>
                   </div>
                 </td>
-
-                {/* Actions: Bookmark & Note */}
                 <td>
                   <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.3rem' }}>
                     <button
@@ -219,8 +202,6 @@ export default function ProblemTable({
           })}
         </tbody>
       </table>
-
-      {/* Pagination Footer */}
       <div className="pagination-bar">
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', fontSize: '0.825rem', color: 'var(--text-secondary)' }}>
           <span>
@@ -270,8 +251,6 @@ export default function ProblemTable({
           </button>
         </div>
       </div>
-
-      {/* Note Modal */}
       {activeNoteSlug && (
         <div className="modal-overlay" onClick={() => setActiveNoteSlug(null)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>

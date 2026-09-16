@@ -2,9 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { 
   Search, 
   X, 
-  Filter, 
   Shuffle, 
-  Download, 
   ChevronDown, 
   Check, 
   RotateCcw,
@@ -25,15 +23,12 @@ export default function FilterToolbar({
   setStatusFilter,
   availableTopics = [],
   onPickRandom,
-  onExportCSV,
   onResetFilters,
   totalFilteredCount,
 }) {
   const [topicDropdownOpen, setTopicDropdownOpen] = useState(false);
   const [topicSearch, setTopicSearch] = useState('');
   const dropdownRef = useRef(null);
-
-  // Close dropdown on outside click
   useEffect(() => {
     function handleClickOutside(e) {
       if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
@@ -57,7 +52,6 @@ export default function FilterToolbar({
 
   return (
     <div className="filter-toolbar">
-      {/* Top Filter Row: Search & Action Buttons */}
       <div className="filter-row">
         <div className="search-input-wrapper" style={{ maxWidth: '420px' }}>
           <Search size={18} className="search-icon" />
@@ -89,15 +83,6 @@ export default function FilterToolbar({
             <span>Random Problem</span>
           </button>
 
-          <button
-            className="action-btn-secondary"
-            onClick={onExportCSV}
-            title="Export this question sheet as CSV"
-          >
-            <Download size={15} />
-            <span>Export CSV</span>
-          </button>
-
           {hasActiveFilters && (
             <button
               className="action-btn-secondary"
@@ -113,7 +98,6 @@ export default function FilterToolbar({
 
       {/* Bottom Filter Controls: Difficulty, Topics, Status, Frequency */}
       <div className="filter-row" style={{ paddingTop: '0.5rem', borderTop: '1px solid var(--border-subtle)' }}>
-        {/* Difficulty Filter */}
         <div className="filter-group">
           <span className="filter-label">Difficulty:</span>
           {['EASY', 'MEDIUM', 'HARD'].map((diff) => {
@@ -129,8 +113,6 @@ export default function FilterToolbar({
             );
           })}
         </div>
-
-        {/* Topics Dropdown */}
         <div className="filter-group topic-filter-wrapper" ref={dropdownRef}>
           <span className="filter-label">Topic:</span>
           <button
@@ -204,8 +186,6 @@ export default function FilterToolbar({
             </div>
           )}
         </div>
-
-        {/* Status Filter */}
         <div className="filter-group">
           <span className="filter-label">Status:</span>
           {[
@@ -223,8 +203,6 @@ export default function FilterToolbar({
             </button>
           ))}
         </div>
-
-        {/* Frequency Slider */}
         <div className="filter-group" style={{ marginLeft: 'auto' }}>
           <span className="filter-label">Min Freq:</span>
           <input
@@ -241,8 +219,6 @@ export default function FilterToolbar({
           </span>
         </div>
       </div>
-
-      {/* Selected Topics Cloud */}
       {selectedTopics.length > 0 && (
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.35rem', paddingTop: '0.25rem' }}>
           {selectedTopics.map((t) => (

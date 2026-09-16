@@ -30,8 +30,6 @@ export default function RandomQuestionModal({
         <button className="modal-close-btn" onClick={onClose} title="Close">
           <X size={20} />
         </button>
-
-        {/* Modal Header */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
           <Sparkles size={20} color="var(--accent-lc)" />
           <span style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.05em', color: 'var(--accent-lc)', fontWeight: 700 }}>
@@ -57,8 +55,6 @@ export default function RandomQuestionModal({
             • Acceptance: <strong>{problem.acceptanceRate}</strong>
           </span>
         </div>
-
-        {/* Topics */}
         {problem.topics && problem.topics.length > 0 && (
           <div style={{ marginBottom: '1.5rem' }}>
             <span style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: 'var(--text-muted)', fontWeight: 600, display: 'block', marginBottom: '0.4rem' }}>
@@ -71,8 +67,6 @@ export default function RandomQuestionModal({
             </div>
           </div>
         )}
-
-        {/* Actions */}
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '0.75rem', paddingTop: '1.25rem', borderTop: '1px solid var(--border-subtle)', flexWrap: 'wrap' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
             <button

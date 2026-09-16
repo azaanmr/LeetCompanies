@@ -9,23 +9,37 @@ const LOCAL_STORAGE_KEYS = {
   FAV_COMPANIES: 'lc_explorer_fav_companies',
   NOTES: 'lc_explorer_notes',
 };
+function parseHash(hashStr) {
+  const clean = (hashStr || '').replace(/^#\/?/, '').trim();
+  if (!clean || clean === 'home') {
+    return { tab: 'home', company: null };
+  }
+  if (clean.startsWith('company/')) {
+    const slug = clean.split('company/')[1]?.split('?')[0]?.trim();
+    return { tab: 'companies', company: slug || null };
+  }
+  if (clean === 'companies') {
+    return { tab: 'companies', company: null };
+  }
+  if (clean === 'search') {
+    return { tab: 'search', company: null };
+  }
+  if (clean === 'tracker') {
+    return { tab: 'tracker', company: null };
+  }
+  return { tab: 'home', company: null };
+}
 
 export function AppProvider({ children }) {
-  // Theme state
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem(LOCAL_STORAGE_KEYS.THEME) || 'dark';
   });
-
-  // Navigation state
-  const [activeTab, setActiveTab] = useState('companies'); // 'companies' | 'search' | 'overlap' | 'tracker'
-  const [selectedCompanySlug, setSelectedCompanySlug] = useState(null);
-
-  // Global Companies metadata
+  const initialNav = parseHash(window.location.hash);
+  const [activeTab, setActiveTabState] = useState(initialNav.tab);
+  const [selectedCompanySlug, setSelectedCompanySlugState] = useState(initialNav.company);
   const [companies, setCompanies] = useState([]);
   const [tags, setTags] = useState([]);
   const [loadingCompanies, setLoadingCompanies] = useState(true);
-
-  // User tracking states
   const [solvedMap, setSolvedMap] = useState(() => {
     try {
       const saved = localStorage.getItem(LOCAL_STORAGE_KEYS.SOLVED);
@@ -61,14 +75,30 @@ export function AppProvider({ children }) {
       return {};
     }
   });
-
-  // Synchronize theme to document
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem(LOCAL_STORAGE_KEYS.THEME, theme);
   }, [theme]);
 
-  // Load companies index and tags on mount
+  // Listen to Browser Back / Forward buttons & Hash Changes
+  useEffect(() => {
+    const handleLocationChange = () => {
+      const { tab, company } = parseHash(window.location.hash);
+      setActiveTabState(tab);
+      setSelectedCompanySlugState(company);
+    };
+
+    window.addEventListener('hashchange', handleLocationChange);
+    window.addEventListener('popstate', handleLocationChange);
+    if (!window.location.hash || window.location.hash === '#') {
+      window.history.replaceState(null, '', '#/');
+    }
+
+    return () => {
+      window.removeEventListener('hashchange', handleLocationChange);
+      window.removeEventListener('popstate', handleLocationChange);
+    };
+  }, []);
   useEffect(() => {
     async function loadInitialData() {
       try {
@@ -88,8 +118,6 @@ export function AppProvider({ children }) {
     }
     loadInitialData();
   }, []);
-
-  // Save changes to localStorage
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEYS.SOLVED, JSON.stringify(solvedMap));
   }, [solvedMap]);
@@ -105,10 +133,28 @@ export function AppProvider({ children }) {
   useEffect(() => {
     localStorage.setItem(LOCAL_STORAGE_KEYS.NOTES, JSON.stringify(notesMap));
   }, [notesMap]);
-
-  // Helper Actions
   const toggleTheme = () => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
+
+  const setActiveTab = (tab) => {
+    setActiveTabState(tab);
+    setSelectedCompanySlugState(null);
+    window.location.hash = tab === 'home' ? '#/' : `#/${tab}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const selectCompany = (slug) => {
+    setSelectedCompanySlugState(slug);
+    setActiveTabState('companies');
+    window.location.hash = `#/company/${slug}`;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const clearSelectedCompany = () => {
+    setSelectedCompanySlugState(null);
+    window.location.hash = '#/companies';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const toggleSolved = (slug) => {
@@ -157,16 +203,6 @@ export function AppProvider({ children }) {
       }
       return next;
     });
-  };
-
-  const selectCompany = (slug) => {
-    setSelectedCompanySlug(slug);
-    setActiveTab('companies');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const clearSelectedCompany = () => {
-    setSelectedCompanySlug(null);
   };
 
   const solvedCount = Object.keys(solvedMap).length;

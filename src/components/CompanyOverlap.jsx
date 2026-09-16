@@ -25,13 +25,9 @@ export default function CompanyOverlap() {
   const { companies, solvedMap, toggleSolved, bookmarkMap, toggleBookmark } = useApp();
   const [globalProblems, setGlobalProblems] = useState([]);
   const [loading, setLoading] = useState(true);
-
-  // Selected companies for overlap
   const [selectedSlugs, setSelectedSlugs] = useState(['google', 'meta', 'amazon']);
   const [companySearch, setCompanySearch] = useState('');
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  // Load global database
   useEffect(() => {
     fetch('./data/global_problems.json')
       .then((res) => res.json())
@@ -55,8 +51,6 @@ export default function CompanyOverlap() {
   const applyPreset = (slugs) => {
     setSelectedSlugs(slugs);
   };
-
-  // Compute overlapping problems
   const overlapResults = useMemo(() => {
     if (selectedSlugs.length === 0 || globalProblems.length === 0) return [];
 
@@ -112,7 +106,6 @@ export default function CompanyOverlap() {
 
   return (
     <div>
-      {/* Header */}
       <section className="hero-header">
         <div className="hero-main">
           <h1>Multi-Company Overlap Matrix</h1>
@@ -121,8 +114,6 @@ export default function CompanyOverlap() {
           </p>
         </div>
       </section>
-
-      {/* Preset Quick Buttons */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem', flexWrap: 'wrap' }}>
         <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 600, textTransform: 'uppercase' }}>
           Quick Combos:
@@ -139,8 +130,6 @@ export default function CompanyOverlap() {
           </button>
         ))}
       </div>
-
-      {/* Company Selector Box */}
       <div className="overlap-selector-box">
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', flexWrap: 'wrap' }}>
           <div>
@@ -151,8 +140,6 @@ export default function CompanyOverlap() {
               Add up to 8 companies to compute shared questions.
             </p>
           </div>
-
-          {/* Add Company Search */}
           <div style={{ position: 'relative', width: '280px' }}>
             <div className="search-input-wrapper" style={{ width: '100%' }}>
               <Plus size={16} className="search-icon" />
@@ -187,8 +174,6 @@ export default function CompanyOverlap() {
             )}
           </div>
         </div>
-
-        {/* Selected Chips */}
         <div className="overlap-chips-container">
           {selectedCompaniesList.map((comp) => (
             <div key={comp.slug} className="selected-company-chip">
@@ -210,8 +195,6 @@ export default function CompanyOverlap() {
           )}
         </div>
       </div>
-
-      {/* Overlap Results Table */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
         <span style={{ fontSize: '0.875rem', color: 'var(--text-secondary)' }}>
           Found <strong>{overlapResults.length}</strong> common questions asked by 2+ selected companies
@@ -239,7 +222,6 @@ export default function CompanyOverlap() {
 
                 return (
                   <tr key={prob.slug}>
-                    {/* Solved */}
                     <td className="status-col">
                       <button
                         className="table-action-btn"
@@ -253,8 +235,6 @@ export default function CompanyOverlap() {
                         )}
                       </button>
                     </td>
-
-                    {/* Title */}
                     <td>
                       <a
                         href={prob.link}
@@ -268,15 +248,11 @@ export default function CompanyOverlap() {
                         <ExternalLink size={13} style={{ opacity: 0.5 }} />
                       </a>
                     </td>
-
-                    {/* Difficulty */}
                     <td>
                       <span className={`diff-badge ${prob.difficulty}`}>
                         {prob.difficulty}
                       </span>
                     </td>
-
-                    {/* Topics */}
                     <td>
                       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.3rem', maxWidth: '280px' }}>
                         {prob.topics && prob.topics.slice(0, 2).map((t) => (
@@ -284,8 +260,6 @@ export default function CompanyOverlap() {
                         ))}
                       </div>
                     </td>
-
-                    {/* Overlap Ratio Badge */}
                     <td>
                       <span
                         className="category-chip"
@@ -302,8 +276,6 @@ export default function CompanyOverlap() {
                         {prob.matchCount} of {selectedSlugs.length} Companies
                       </span>
                     </td>
-
-                    {/* Companies List */}
                     <td>
                       <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.3rem' }}>
                         {prob.matchingCompanies.map((mc) => (

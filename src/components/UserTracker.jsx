@@ -43,8 +43,6 @@ export default function UserTracker() {
     globalProblems.forEach((p) => map.set(p.slug, p));
     return map;
   }, [globalProblems]);
-
-  // Solved difficulty breakdown
   const solvedBreakdown = useMemo(() => {
     let easy = 0, medium = 0, hard = 0;
     Object.keys(solvedMap).forEach((slug) => {
@@ -59,28 +57,20 @@ export default function UserTracker() {
     });
     return { easy, medium, hard };
   }, [solvedMap, probMap]);
-
-  // Starred problems list
   const starredList = useMemo(() => {
     return Object.keys(bookmarkMap)
       .map((slug) => probMap.get(slug) || { slug, title: slug, difficulty: 'MEDIUM', link: `https://leetcode.com/problems/${slug}/` });
   }, [bookmarkMap, probMap]);
-
-  // Solved problems list
   const solvedList = useMemo(() => {
     return Object.keys(solvedMap)
       .map((slug) => probMap.get(slug) || { slug, title: slug, difficulty: 'MEDIUM', link: `https://leetcode.com/problems/${slug}/` });
   }, [solvedMap, probMap]);
-
-  // Notes list
   const notesList = useMemo(() => {
     return Object.entries(notesMap).map(([slug, note]) => {
       const prob = probMap.get(slug) || { slug, title: slug, difficulty: 'MEDIUM', link: `https://leetcode.com/problems/${slug}/` };
       return { prob, note, slug };
     });
   }, [notesMap, probMap]);
-
-  // Export Backup
   const handleExportBackup = () => {
     const backupData = {
       version: 1,
@@ -97,8 +87,6 @@ export default function UserTracker() {
     downloadAnchor.click();
     downloadAnchor.remove();
   };
-
-  // Import Backup
   const handleImportBackup = (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -119,7 +107,6 @@ export default function UserTracker() {
 
   return (
     <div>
-      {/* Header */}
       <section className="hero-header">
         <div className="hero-title-row">
           <div className="hero-main">
@@ -142,8 +129,6 @@ export default function UserTracker() {
           </div>
         </div>
       </section>
-
-      {/* Progress Stats Summary */}
       <div className="detail-metrics-row" style={{ marginBottom: '2rem' }}>
         <div className="detail-metric-card" style={{ background: 'var(--bg-secondary)' }}>
           <span className="detail-metric-val">{solvedCount}</span>
@@ -162,8 +147,6 @@ export default function UserTracker() {
           <span className="detail-metric-lbl">Hard Solved</span>
         </div>
       </div>
-
-      {/* Section Tabs */}
       <div className="timeframe-bar">
         <button
           className={`timeframe-tab ${activeTab === 'starred' ? 'active' : ''}`}
@@ -192,8 +175,6 @@ export default function UserTracker() {
           <span className="timeframe-count-badge">{solvedCount}</span>
         </button>
       </div>
-
-      {/* Starred Tab Content */}
       {activeTab === 'starred' && (
         <div>
           {starredList.length > 0 ? (
@@ -266,8 +247,6 @@ export default function UserTracker() {
           )}
         </div>
       )}
-
-      {/* Notes Tab Content */}
       {activeTab === 'notes' && (
         <div>
           {notesList.length > 0 ? (
@@ -309,8 +288,6 @@ export default function UserTracker() {
           )}
         </div>
       )}
-
-      {/* Solved History Tab Content */}
       {activeTab === 'solved' && (
         <div>
           {solvedList.length > 0 ? (

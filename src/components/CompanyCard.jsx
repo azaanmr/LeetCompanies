@@ -1,19 +1,21 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
+import CompanyLogo from './CompanyLogo';
 import { Star, ChevronRight } from 'lucide-react';
 
 export default function CompanyCard({ company }) {
   const { selectCompany, favCompaniesMap, toggleFavoriteCompany } = useApp();
   const isFav = !!favCompaniesMap[company.slug];
 
-  const { easy = 0, medium = 0, hard = 0 } = company.difficultyCounts || {};
+  const counts = company.difficultyCounts || {};
+  const easy = counts.EASY ?? counts.easy ?? 0;
+  const medium = counts.MEDIUM ?? counts.medium ?? 0;
+  const hard = counts.HARD ?? counts.hard ?? 0;
   const total = company.totalQuestions || (easy + medium + hard) || 1;
 
   const easyPct = Math.round((easy / total) * 100) || 0;
   const medPct = Math.round((medium / total) * 100) || 0;
-  const hardPct = 100 - easyPct - medPct;
-
-  const initial = company.name.charAt(0).toUpperCase();
+  const hardPct = Math.max(0, 100 - easyPct - medPct);
 
   const handleFavoriteClick = (e) => {
     e.stopPropagation();
@@ -28,10 +30,9 @@ export default function CompanyCard({ company }) {
       tabIndex={0}
       onKeyDown={(e) => e.key === 'Enter' && selectCompany(company.slug)}
     >
-      {/* Header */}
       <div className="company-card-header">
         <div className="company-brand-group">
-          <div className="company-avatar">{initial}</div>
+          <CompanyLogo slug={company.slug} name={company.name} size={44} />
           <div className="company-info">
             <h3 className="company-name">{company.name}</h3>
             <span className="company-category-tag">{company.category}</span>
@@ -45,8 +46,6 @@ export default function CompanyCard({ company }) {
           <Star size={18} fill={isFav ? 'var(--accent-lc)' : 'none'} />
         </button>
       </div>
-
-      {/* Difficulty stats box */}
       <div className="company-card-stats">
         <div className="card-stat-box">
           <span className="card-stat-num easy">{easy}</span>
@@ -61,15 +60,11 @@ export default function CompanyCard({ company }) {
           <span className="card-stat-lbl">Hard</span>
         </div>
       </div>
-
-      {/* Difficulty breakdown visual bar */}
       <div className="difficulty-bar" title={`Easy: ${easy} | Med: ${medium} | Hard: ${hard}`}>
         <div className="difficulty-bar-segment easy" style={{ width: `${easyPct}%` }} />
         <div className="difficulty-bar-segment medium" style={{ width: `${medPct}%` }} />
         <div className="difficulty-bar-segment hard" style={{ width: `${hardPct}%` }} />
       </div>
-
-      {/* Top Topics Preview */}
       {company.topTopics && company.topTopics.length > 0 && (
         <div className="company-tags-preview">
           {company.topTopics.slice(0, 3).map((topic) => (
@@ -80,8 +75,6 @@ export default function CompanyCard({ company }) {
           )}
         </div>
       )}
-
-      {/* Bottom Footer Info */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '0.25rem' }}>
         <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontFamily: 'var(--font-mono)' }}>
           {company.totalQuestions} Questions

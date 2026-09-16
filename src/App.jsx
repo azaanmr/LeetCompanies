@@ -1,10 +1,10 @@
 import React from 'react';
 import { useApp } from './context/AppContext';
-import Navbar from './components/Navbar';
+import Header from './components/Header';
+import HomeTab from './components/HomeTab';
 import CompanyGrid from './components/CompanyGrid';
 import CompanyDetail from './components/CompanyDetail';
-import GlobalSearch from './components/GlobalSearch';
-import CompanyOverlap from './components/CompanyOverlap';
+import GlobalSearchTab from './components/GlobalSearchTab';
 import UserTracker from './components/UserTracker';
 
 export default function App() {
@@ -12,18 +12,19 @@ export default function App() {
 
   return (
     <div className="app-container">
-      <Navbar />
+      <Header />
 
       <main className="main-content">
-        {activeTab === 'companies' && (
-          selectedCompanySlug ? <CompanyDetail /> : <CompanyGrid />
+        {selectedCompanySlug ? (
+          <CompanyDetail />
+        ) : (
+          <>
+            {activeTab === 'home' && <HomeTab />}
+            {activeTab === 'companies' && <CompanyGrid />}
+            {activeTab === 'search' && <GlobalSearchTab />}
+            {activeTab === 'tracker' && <UserTracker />}
+          </>
         )}
-
-        {activeTab === 'search' && <GlobalSearch />}
-
-        {activeTab === 'overlap' && <CompanyOverlap />}
-
-        {activeTab === 'tracker' && <UserTracker />}
       </main>
 
       <footer style={{
@@ -35,10 +36,10 @@ export default function App() {
       }}>
         <div style={{ maxWidth: '1440px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
           <div>
-            <strong>LeetCompanies Explorer</strong> • 470+ Companies • 3,390+ Questions Archive
+            <strong>LeetCompanies Explorer</strong> • <span className="azn-brand-badge">BY AZN LABS</span>
           </div>
           <div>
-            Data parsed across 30 Days, 3 Months, 6 Months, & All-Time frequencies
+            Real interview questions archive across 470+ companies
           </div>
         </div>
       </footer>

@@ -1,26 +1,15 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useApp } from '../context/AppContext';
+import CompanyLogo from './CompanyLogo';
 import FilterToolbar from './FilterToolbar';
 import ProblemTable from './ProblemTable';
 import RandomQuestionModal from './RandomQuestionModal';
 import { 
   ArrowLeft, 
   Star, 
-  Calendar, 
-  Flame, 
-  CheckCircle2, 
   Sparkles,
-  TrendingUp,
   AlertCircle
 } from 'lucide-react';
-
-const TIMEFRAMES = [
-  { key: '30d', label: '30 Days', badge: 'Hot 🔥' },
-  { key: '3m', label: '3 Months', badge: null },
-  { key: '6m', label: '6 Months', badge: null },
-  { key: '6m_plus', label: '> 6 Months', badge: null },
-  { key: 'all', label: 'All Time', badge: null },
-];
 
 export default function CompanyDetail() {
   const {
@@ -35,25 +24,14 @@ export default function CompanyDetail() {
   const [companyData, setCompanyData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  // Active Timeframe
-  const [selectedPeriod, setSelectedPeriod] = useState('30d');
-
-  // Filter states
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDifficulties, setSelectedDifficulties] = useState([]);
   const [selectedTopics, setSelectedTopics] = useState([]);
   const [minFrequency, setMinFrequency] = useState(0);
   const [statusFilter, setStatusFilter] = useState('ALL');
-
-  // Sorting states
   const [sortField, setSortField] = useState('frequency'); // 'frequency' | 'title' | 'difficulty' | 'acceptanceRate'
   const [sortOrder, setSortOrder] = useState('desc'); // 'asc' | 'desc'
-
-  // Random Modal state
   const [randomProblem, setRandomProblem] = useState(null);
-
-  // Load detailed company data from JSON
   useEffect(() => {
     if (!selectedCompanySlug) return;
     setLoading(true);
@@ -66,16 +44,6 @@ export default function CompanyDetail() {
       })
       .then((data) => {
         setCompanyData(data);
-        // Default to first timeframe with data if 30d is empty
-        if (data.periods['30d']?.length > 0) {
-          setSelectedPeriod('30d');
-        } else if (data.periods['3m']?.length > 0) {
-          setSelectedPeriod('3m');
-        } else if (data.periods['6m']?.length > 0) {
-          setSelectedPeriod('6m');
-        } else {
-          setSelectedPeriod('all');
-        }
       })
       .catch((err) => {
         console.error(err);
@@ -88,40 +56,43 @@ export default function CompanyDetail() {
 
   const isFav = selectedCompanySlug && !!favCompaniesMap[selectedCompanySlug];
 
-  // Current period problems raw list
-  const currentPeriodProblems = useMemo(() => {
+  // All problems for this company (using 'all' period or merging)
+  const allCompanyProblems = useMemo(() => {
     if (!companyData || !companyData.periods) return [];
-    return companyData.periods[selectedPeriod] || [];
-  }, [companyData, selectedPeriod]);
-
-  // Extract all available topics in current company period
+    if (companyData.periods['all'] && companyData.periods['all'].length > 0) {
+      return companyData.periods['all'];
+    }
+    const seen = new Set();
+    const merged = [];
+    Object.values(companyData.periods).forEach((list) => {
+      list.forEach((p) => {
+        if (!seen.has(p.slug)) {
+          seen.add(p.slug);
+          merged.push(p);
+        }
+      });
+    });
+    return merged;
+  }, [companyData]);
   const availableTopics = useMemo(() => {
     const topicSet = new Set();
-    currentPeriodProblems.forEach((p) => {
+    allCompanyProblems.forEach((p) => {
       if (p.topics) p.topics.forEach((t) => topicSet.add(t));
     });
     return Array.from(topicSet).sort();
-  }, [currentPeriodProblems]);
-
-  // Calculate Solved progress for this company
+  }, [allCompanyProblems]);
   const companySolvedStats = useMemo(() => {
-    if (!companyData || !companyData.periods) return { solved: 0, total: 0, percent: 0 };
-    const allProbs = companyData.periods['all'] || currentPeriodProblems;
-    const uniqueSlugs = new Set(allProbs.map((p) => p.slug));
+    if (!allCompanyProblems || allCompanyProblems.length === 0) return { solved: 0, total: 0, percent: 0 };
     let solved = 0;
-    uniqueSlugs.forEach((slug) => {
-      if (solvedMap[slug]) solved++;
+    allCompanyProblems.forEach((p) => {
+      if (solvedMap[p.slug]) solved++;
     });
-    const total = uniqueSlugs.size || 1;
+    const total = allCompanyProblems.length || 1;
     const percent = Math.round((solved / total) * 100);
     return { solved, total, percent };
-  }, [companyData, currentPeriodProblems, solvedMap]);
-
-  // Filter and sort problems
+  }, [allCompanyProblems, solvedMap]);
   const filteredProblems = useMemo(() => {
-    let result = [...currentPeriodProblems];
-
-    // Search query
+    let result = [...allCompanyProblems];
     if (searchQuery.trim()) {
       const q = searchQuery.toLowerCase().trim();
       result = result.filter(
@@ -130,25 +101,17 @@ export default function CompanyDetail() {
           (p.topics && p.topics.some((t) => t.toLowerCase().includes(q)))
       );
     }
-
-    // Difficulty filter
     if (selectedDifficulties.length > 0) {
       result = result.filter((p) => selectedDifficulties.includes(p.difficulty));
     }
-
-    // Topics filter
     if (selectedTopics.length > 0) {
       result = result.filter(
         (p) => p.topics && selectedTopics.every((t) => p.topics.includes(t))
       );
     }
-
-    // Frequency filter
     if (minFrequency > 0) {
       result = result.filter((p) => (p.frequency || 0) >= minFrequency);
     }
-
-    // Status filter
     if (statusFilter === 'SOLVED') {
       result = result.filter((p) => !!solvedMap[p.slug]);
     } else if (statusFilter === 'UNSOLVED') {
@@ -156,8 +119,6 @@ export default function CompanyDetail() {
     } else if (statusFilter === 'BOOKMARKED') {
       result = result.filter((p) => !!bookmarkMap[p.slug]);
     }
-
-    // Sort
     result.sort((a, b) => {
       let comparison = 0;
       if (sortField === 'frequency') {
@@ -176,7 +137,7 @@ export default function CompanyDetail() {
 
     return result;
   }, [
-    currentPeriodProblems,
+    allCompanyProblems,
     searchQuery,
     selectedDifficulties,
     selectedTopics,
@@ -187,8 +148,6 @@ export default function CompanyDetail() {
     solvedMap,
     bookmarkMap,
   ]);
-
-  // Filter Handlers
   const toggleDifficulty = (diff) => {
     setSelectedDifficulties((prev) =>
       prev.includes(diff) ? prev.filter((d) => d !== diff) : [...prev, diff]
@@ -210,36 +169,10 @@ export default function CompanyDetail() {
     setMinFrequency(0);
     setStatusFilter('ALL');
   };
-
-  // Random Question Picker
   const handlePickRandom = () => {
     if (filteredProblems.length === 0) return;
     const randomIndex = Math.floor(Math.random() * filteredProblems.length);
     setRandomProblem(filteredProblems[randomIndex]);
-  };
-
-  // Export Sheet to CSV
-  const handleExportCSV = () => {
-    if (filteredProblems.length === 0) return;
-    const headers = ['Difficulty', 'Title', 'Frequency', 'Acceptance Rate', 'Link', 'Topics', 'Solved'];
-    const rows = filteredProblems.map((p) => [
-      p.difficulty,
-      `"${p.title.replace(/"/g, '""')}"`,
-      p.frequency,
-      p.acceptanceRate,
-      p.link,
-      `"${(p.topics || []).join(', ')}"`,
-      solvedMap[p.slug] ? 'Yes' : 'No',
-    ]);
-    const csvContent = [headers.join(','), ...rows.map((r) => r.join(','))].join('\n');
-    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
-    link.setAttribute('href', url);
-    link.setAttribute('download', `${companyData.name}_${selectedPeriod}_questions.csv`);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
   };
 
   if (loading) {
@@ -266,11 +199,9 @@ export default function CompanyDetail() {
   }
 
   const initial = companyData.name.charAt(0).toUpperCase();
-  const currentPeriodObj = TIMEFRAMES.find((t) => t.key === selectedPeriod);
 
   return (
     <div>
-      {/* Header Banner */}
       <section className="detail-header">
         <div className="detail-header-top">
           <button className="back-btn" onClick={clearSelectedCompany}>
@@ -287,10 +218,8 @@ export default function CompanyDetail() {
             <span>{isFav ? 'Favorited' : 'Favorite Company'}</span>
           </button>
         </div>
-
-        {/* Company Title & Brand */}
         <div className="detail-title-group">
-          <div className="detail-avatar">{initial}</div>
+          <CompanyLogo slug={companyData.slug} name={companyData.name} size={56} fontSize="1.5rem" />
           <div className="detail-title-text">
             <h1>{companyData.name}</h1>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginTop: '0.25rem', flexWrap: 'wrap' }}>
@@ -303,8 +232,6 @@ export default function CompanyDetail() {
             </div>
           </div>
         </div>
-
-        {/* Solved Progress Bar for this company */}
         <div style={{ marginTop: '-0.5rem' }}>
           <div style={{ height: '6px', background: 'var(--bg-tertiary)', borderRadius: '9999px', overflow: 'hidden' }}>
             <div
@@ -318,8 +245,6 @@ export default function CompanyDetail() {
             />
           </div>
         </div>
-
-        {/* Metrics Grid */}
         <div className="detail-metrics-row">
           <div className="detail-metric-card">
             <span className="detail-metric-val">{companyData.totalQuestions}</span>
@@ -339,35 +264,6 @@ export default function CompanyDetail() {
           </div>
         </div>
       </section>
-
-      {/* Recency Timeframe Tabs */}
-      <div className="timeframe-bar">
-        {TIMEFRAMES.map((t) => {
-          const count = companyData.counts?.[t.key] || 0;
-          const isActive = selectedPeriod === t.key;
-          return (
-            <button
-              key={t.key}
-              className={`timeframe-tab ${isActive ? 'active' : ''}`}
-              onClick={() => {
-                setSelectedPeriod(t.key);
-                resetAllFilters();
-              }}
-            >
-              <Calendar size={15} />
-              <span>{t.label}</span>
-              {t.badge && !isActive && (
-                <span style={{ fontSize: '0.7rem', color: 'var(--accent-lc)', fontWeight: 700 }}>
-                  {t.badge}
-                </span>
-              )}
-              <span className="timeframe-count-badge">{count}</span>
-            </button>
-          );
-        })}
-      </div>
-
-      {/* Filter Toolbar */}
       <FilterToolbar
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
@@ -382,12 +278,9 @@ export default function CompanyDetail() {
         setStatusFilter={setStatusFilter}
         availableTopics={availableTopics}
         onPickRandom={handlePickRandom}
-        onExportCSV={handleExportCSV}
         onResetFilters={resetAllFilters}
         totalFilteredCount={filteredProblems.length}
       />
-
-      {/* Problem Table */}
       <ProblemTable
         problems={filteredProblems}
         sortField={sortField}
@@ -397,13 +290,11 @@ export default function CompanyDetail() {
           setSortOrder(order);
         }}
       />
-
-      {/* Random Question Modal */}
       {randomProblem && (
         <RandomQuestionModal
           problem={randomProblem}
           companyName={companyData.name}
-          periodLabel={currentPeriodObj?.label || selectedPeriod}
+          periodLabel="All Time"
           onClose={() => setRandomProblem(null)}
           onPickAnother={handlePickRandom}
         />

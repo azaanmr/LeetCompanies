@@ -1,9 +1,9 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
 import { 
+  Home,
   Building2, 
   Search, 
-  Layers, 
   BarChart3, 
   Sun, 
   Moon, 
@@ -11,7 +11,7 @@ import {
   Code2
 } from 'lucide-react';
 
-export default function Navbar() {
+export default function Header() {
   const {
     theme,
     toggleTheme,
@@ -23,31 +23,35 @@ export default function Navbar() {
 
   const handleTabClick = (tabId) => {
     setActiveTab(tabId);
-    if (tabId === 'companies') {
-      clearSelectedCompany();
-    }
   };
 
   return (
     <header className="navbar">
       <div className="nav-inner">
-        {/* Brand */}
         <div 
           className="nav-brand" 
-          onClick={() => handleTabClick('companies')}
+          onClick={() => handleTabClick('home')}
           title="LeetCode Company Explorer Home"
         >
           <div className="nav-brand-logo">
             <Code2 size={22} strokeWidth={2.5} />
           </div>
-          <div className="nav-brand-text">
-            <span>Leet</span>Companies
+          <div className="nav-brand-text-group">
+            <div className="nav-brand-text">
+              <span>Leet</span>Companies
+            </div>
+            <span className="azn-brand-badge">BY AZN LABS</span>
           </div>
-          <span className="nav-brand-badge">Premium Free</span>
         </div>
-
-        {/* Navigation Tabs */}
         <nav className="nav-tabs">
+          <button
+            className={`nav-tab-btn ${activeTab === 'home' ? 'active' : ''}`}
+            onClick={() => handleTabClick('home')}
+          >
+            <Home size={16} />
+            <span>Home</span>
+          </button>
+
           <button
             className={`nav-tab-btn ${activeTab === 'companies' ? 'active' : ''}`}
             onClick={() => handleTabClick('companies')}
@@ -61,15 +65,7 @@ export default function Navbar() {
             onClick={() => handleTabClick('search')}
           >
             <Search size={16} />
-            <span>Problem Search</span>
-          </button>
-
-          <button
-            className={`nav-tab-btn ${activeTab === 'overlap' ? 'active' : ''}`}
-            onClick={() => handleTabClick('overlap')}
-          >
-            <Layers size={16} />
-            <span>Company Overlap</span>
+            <span>Search & Overlap</span>
           </button>
 
           <button
@@ -80,8 +76,6 @@ export default function Navbar() {
             <span>My Tracker</span>
           </button>
         </nav>
-
-        {/* Right Stats & Theme Controls */}
         <div className="nav-actions">
           <div className="nav-stat-pill" title="Total Problems Solved">
             <CheckCircle2 size={15} color="var(--status-solved)" />
