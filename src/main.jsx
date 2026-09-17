@@ -5,6 +5,7 @@ import { AppProvider } from './context/AppContext';
 import './index.css';
 import './badge.css';
 import './apps.css';
+import './responsive.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

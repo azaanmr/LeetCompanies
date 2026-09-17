@@ -1,0 +1,494 @@
+/* ==========================================================================
+   Comprehensive Mobile & Tablet Responsive Design System
+   Leet Companies | AZN Labs
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   Tablet & Medium Screens (max-width: 1024px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 1024px) {
+  .main-content {
+    padding: 1.25rem 1.25rem 3.5rem 1.25rem;
+  }
+
+  .nav-inner {
+    padding: 0.75rem 1.25rem;
+    gap: 1rem;
+  }
+
+  .company-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+
+  .tracks-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .azn-showcase-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .tracker-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Mobile & Small Screens (max-width: 768px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  /* Global Layout */
+  .main-content {
+    padding: 0.85rem 0.75rem 3rem 0.75rem !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+  }
+
+  /* Two-row Mobile Navbar */
+  .navbar {
+    padding: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+
+  .nav-inner {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0.6rem 0.75rem 0.4rem 0.75rem !important;
+    gap: 0.45rem 0 !important;
+  }
+
+  .nav-brand {
+    order: 1 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.45rem !important;
+  }
+
+  .nav-brand-logo {
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 6px !important;
+  }
+
+  .nav-brand-text img {
+    width: 170px !important;
+    max-width: 46vw !important;
+    height: auto !important;
+  }
+
+  .nav-brand-text-group {
+    align-items: flex-start !important;
+    gap: 0 !important;
+  }
+
+  .azn-brand-badge {
+    font-size: 0.52rem !important;
+    padding: 0.08rem 0.3rem !important;
+  }
+
+  .nav-actions {
+    order: 2 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.35rem !important;
+  }
+
+  .nav-stat-pill {
+    padding: 0.35rem 0.55rem !important;
+    font-size: 0.725rem !important;
+  }
+
+  /* Full-width Horizontal Scrollable Tabs */
+  .nav-tabs {
+    order: 3 !important;
+    width: 100% !important;
+    margin-top: 0.35rem !important;
+    display: flex !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    padding: 0.2rem !important;
+    justify-content: flex-start !important;
+    border-radius: 8px !important;
+  }
+
+  .nav-tabs::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .nav-tab-btn {
+    flex-shrink: 0 !important;
+    padding: 0.4rem 0.7rem !important;
+    font-size: 0.775rem !important;
+    gap: 0.3rem !important;
+  }
+
+  /* Home Tab Hero */
+  .home-hero {
+    padding: 1.75rem 0.25rem !important;
+  }
+
+  .home-badge {
+    font-size: 0.725rem !important;
+    padding: 0.25rem 0.65rem !important;
+  }
+
+  .home-hero img[alt="LeetCompanies"] {
+    width: 100% !important;
+    max-width: 300px !important;
+    margin: 1.25rem auto 1.5rem auto !important;
+  }
+
+  .home-title {
+    font-size: 1.55rem !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .home-subtitle {
+    font-size: 0.875rem !important;
+    line-height: 1.45 !important;
+    padding: 0 0.15rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .home-search-box {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0.25rem 0.35rem !important;
+    flex-direction: row !important;
+  }
+
+  .home-search-input {
+    font-size: 0.85rem !important;
+    padding: 0.45rem 0.4rem 0.45rem 0 !important;
+  }
+
+  .home-search-btn {
+    padding: 0.45rem 0.75rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  .home-hero-actions {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0.65rem !important;
+  }
+
+  .home-hero-actions button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .tracks-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.85rem !important;
+  }
+
+  .highlights-banner {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    padding: 1rem !important;
+  }
+
+  /* Company Grid */
+  .company-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  .category-pills {
+    display: flex !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    padding-bottom: 0.35rem !important;
+    justify-content: flex-start !important;
+  }
+
+  .category-pills::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .category-pill {
+    flex-shrink: 0 !important;
+    padding: 0.35rem 0.7rem !important;
+    font-size: 0.75rem !important;
+  }
+
+  .filter-toolbar {
+    padding: 0.85rem !important;
+    gap: 0.75rem !important;
+  }
+
+  .filter-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.65rem !important;
+  }
+
+  .search-input-wrapper {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .view-controls {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: space-between !important;
+  }
+
+  .sort-select {
+    width: 100% !important;
+  }
+
+  /* Company Detail View */
+  .company-header-card {
+    padding: 1rem !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.85rem !important;
+  }
+
+  .company-header-main {
+    flex-direction: row !important;
+    align-items: center !important;
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+
+  .company-title-area h1 {
+    font-size: 1.3rem !important;
+  }
+
+  .detail-metrics-row {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+
+  .detail-metric-card {
+    padding: 0.65rem 0.4rem !important;
+    text-align: center !important;
+  }
+
+  .detail-metric-val {
+    font-size: 1.25rem !important;
+  }
+
+  .timeframe-tabs {
+    display: flex !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none !important;
+    padding-bottom: 0.25rem !important;
+    width: 100% !important;
+  }
+
+  .timeframe-tabs::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .timeframe-tab-btn {
+    flex-shrink: 0 !important;
+    padding: 0.4rem 0.75rem !important;
+    font-size: 0.775rem !important;
+  }
+
+  /* Problem Table Mobile Responsiveness */
+  .table-container {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    margin: 0 -0.25rem !important;
+    border-radius: 10px !important;
+    border: 1px solid var(--border-subtle) !important;
+  }
+
+  .problem-table {
+    min-width: 580px !important;
+    width: 100% !important;
+  }
+
+  .problem-table th,
+  .problem-table td {
+    padding: 0.65rem 0.5rem !important;
+  }
+
+  .problem-title-link {
+    font-size: 0.85rem !important;
+    max-width: 200px !important;
+    display: inline-block !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    vertical-align: middle !important;
+  }
+
+  .pagination-bar {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    text-align: center !important;
+    padding: 0.85rem !important;
+  }
+
+  .pagination-bar > div {
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+  }
+
+  /* Universal Search & Overlap */
+  .hero-header {
+    padding: 1rem 0.25rem !important;
+  }
+
+  .hero-header h1 {
+    font-size: 1.4rem !important;
+  }
+
+  .overlap-control-card {
+    padding: 1rem !important;
+  }
+
+  /* AZN Apps Spotlight & Showcase */
+  .azn-ad-spotlight {
+    padding: 1.15rem 0.85rem !important;
+    margin: 1.5rem 0 !important;
+    border-radius: 12px !important;
+  }
+
+  .azn-ad-header-row {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.65rem !important;
+  }
+
+  .azn-ad-app-switch {
+    width: 100% !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    scrollbar-width: none !important;
+  }
+
+  .azn-ad-app-switch::-webkit-scrollbar {
+    display: none !important;
+  }
+
+  .azn-app-tab-btn {
+    flex-shrink: 0 !important;
+  }
+
+  .azn-ad-body {
+    grid-template-columns: 1fr !important;
+    text-align: center !important;
+    gap: 0.85rem !important;
+    justify-items: center !important;
+  }
+
+  .azn-ad-icon-wrapper {
+    width: 72px !important;
+    height: 72px !important;
+    border-radius: 14px !important;
+  }
+
+  .azn-ad-details {
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .azn-ad-title-row {
+    justify-content: center !important;
+  }
+
+  .azn-ad-chips {
+    justify-content: center !important;
+  }
+
+  .azn-ad-cta-col {
+    width: 100% !important;
+    align-items: stretch !important;
+  }
+
+  .playstore-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0.65rem 0.9rem !important;
+  }
+
+  .azn-ad-strip {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.75rem !important;
+    padding: 0.85rem !important;
+  }
+
+  .azn-ad-strip-left {
+    align-items: center !important;
+  }
+
+  .azn-showcase-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.85rem !important;
+  }
+
+  .azn-showcase-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.75rem !important;
+  }
+
+  .azn-modal-content {
+    padding: 1.25rem 0.85rem !important;
+    width: 95vw !important;
+    max-height: 90vh !important;
+  }
+
+  /* Footer */
+  footer {
+    padding: 1.75rem 0.85rem !important;
+  }
+
+  footer > div {
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    gap: 0.75rem !important;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Extra Small Mobile Screens (max-width: 480px)
+   -------------------------------------------------------------------------- */
+@media (max-width: 480px) {
+  .nav-stat-pill span {
+    display: none;
+  }
+
+  .nav-stat-pill {
+    padding: 0.35rem 0.45rem !important;
+  }
+
+  .home-title {
+    font-size: 1.35rem !important;
+  }
+
+  .home-badge {
+    font-size: 0.68rem !important;
+    padding: 0.2rem 0.45rem !important;
+  }
+
+  .section-heading {
+    font-size: 1.15rem !important;
+  }
+
+  .detail-metrics-row {
+    grid-template-columns: 1fr 1fr !important;
+  }
+}
