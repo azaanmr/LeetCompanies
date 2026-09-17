@@ -33,8 +33,8 @@ export default function Header({ onOpenApps }) {
           onClick={() => handleTabClick('home')}
           title="Leet Companies Home"
         >
-          <div className="nav-brand-logo">
-            <Code2 size={22} strokeWidth={2.5} />
+          <div className="nav-brand-logo" style={{ overflow: 'hidden', padding: '1px', background: 'transparent', boxShadow: 'none' }}>
+            <img src="/icon-192.png" alt="Leet Companies Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
           </div>
           <div className="nav-brand-text-group" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.1rem', marginTop: '0.2rem' }}>
             <div className="nav-brand-text">
