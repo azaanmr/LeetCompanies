@@ -4,7 +4,7 @@
   <p><strong>Explore 470+ Company-Wise LeetCode Interview Questions, Frequency Heatmaps & Overlap Matrix</strong></p>
 
   <p>
-    <a href="https://leetcompanies.netlify.app"><img src="https://img.shields.io/badge/Live_Demo-leetcompanies.netlify.app-ffa116?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live Demo" /></a>
+    <a href="https://leetcompanies.netlify.app"><img src="https://img.shields.io/badge/Live_Demo-leetcompanies.netlify.app-ffa116?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live On" /></a>
     <a href="https://github.com/MuhammadAzaan/Leetcode-Companies/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License" /></a>
     <img src="https://img.shields.io/badge/React-19-61dafb?style=for-the-badge&logo=react&logoColor=black" alt="React 19" />
     <img src="https://img.shields.io/badge/Vite-6-646cff?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
