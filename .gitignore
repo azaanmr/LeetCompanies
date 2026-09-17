@@ -1,5 +1,6 @@
 CSV DATA/
 data/
+apps/
 
 node_modules/
 dist/

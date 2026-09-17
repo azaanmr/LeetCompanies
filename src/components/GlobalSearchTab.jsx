@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from 'react';
 import { useApp } from '../context/AppContext';
 import CompanyOverlap from './CompanyOverlap';
 import CompanyLogo from './CompanyLogo';
+import AznAppStrip from './apps/AznAppStrip';
 import { 
   Search, 
   X, 
@@ -176,6 +177,12 @@ export default function GlobalSearchTab() {
               Found <strong>{filteredProblems.length}</strong> problems matching your criteria
             </span>
           </div>
+
+          <AznAppStrip 
+            appId="anyalarm" 
+            customText="⏰ Stay disciplined during interview season. Any Alarm forces you awake with Math & QR scanning challenges." 
+          />
+
           {displayedList.length > 0 ? (
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               {displayedList.map((prob) => {

@@ -4,6 +4,7 @@ import CompanyLogo from './CompanyLogo';
 import FilterToolbar from './FilterToolbar';
 import ProblemTable from './ProblemTable';
 import RandomQuestionModal from './RandomQuestionModal';
+import AznAppStrip from './apps/AznAppStrip';
 import { 
   ArrowLeft, 
   Star, 
@@ -281,6 +282,12 @@ export default function CompanyDetail() {
         onResetFilters={resetAllFilters}
         totalFilteredCount={filteredProblems.length}
       />
+
+      <AznAppStrip 
+        appId="anyalarm" 
+        customText="⏰ Early morning technical rounds? Stop snoozing with Any Alarm — Math challenges, QR barcode scans & GPS arrival alerts." 
+      />
+
       <ProblemTable
         problems={filteredProblems}
         sortField={sortField}

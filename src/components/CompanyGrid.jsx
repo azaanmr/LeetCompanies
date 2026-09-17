@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { useApp } from '../context/AppContext';
 import CompanyCard from './CompanyCard';
+import AznAppStrip from './apps/AznAppStrip';
 import { Search, X, Star, Sparkles, Building2 } from 'lucide-react';
 
 const CATEGORIES = [
@@ -127,6 +128,11 @@ export default function CompanyGrid() {
           </select>
         </div>
       </div>
+
+      <AznAppStrip 
+        appId="anyalarm" 
+        customText="⏰ Hardcore wake-up alarms for early morning interviews. Math puzzles, QR scans & GPS transit alerts." 
+      />
 
       {displayedList.length > 0 ? (
         <div className="company-grid">

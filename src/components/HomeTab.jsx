@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import CompanyLogo from './CompanyLogo';
+import AznAppSpotlight from './apps/AznAppSpotlight';
+import AznAppsShowcase from './apps/AznAppsShowcase';
+import AznAppsModal from './apps/AznAppsModal';
 import { 
   Building2, 
   Search, 
@@ -14,7 +17,6 @@ import {
   Trophy
 } from 'lucide-react';
 
-// Active curated companies with logos in company_logos
 const AVAILABLE_COMPANIES_WITH_LOGOS = [
   { name: 'Google', slug: 'google', tag: 'Big Tech' },
   { name: 'Microsoft', slug: 'microsoft', tag: 'Big Tech' },
@@ -27,6 +29,7 @@ const AVAILABLE_COMPANIES_WITH_LOGOS = [
 export default function HomeTab() {
   const { selectCompany, setActiveTab, companies } = useApp();
   const [quickQuery, setQuickQuery] = useState('');
+  const [showModal, setShowModal] = useState(false);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -62,6 +65,7 @@ export default function HomeTab() {
         <p className="home-subtitle">
           Practice the exact algorithmic questions asked by top engineering teams and quant hedge funds. Filter by frequency, difficulty, and algorithmic tags with zero friction.
         </p>
+
         <form onSubmit={handleSearchSubmit} className="home-search-form">
           <div className="home-search-box">
             <Search size={18} className="home-search-icon" />
@@ -78,6 +82,7 @@ export default function HomeTab() {
             </button>
           </div>
         </form>
+
         <div className="home-hero-actions">
           <button 
             className="action-btn-primary" 
@@ -98,6 +103,7 @@ export default function HomeTab() {
           </button>
         </div>
       </section>
+
       <section className="marquee-section">
         <div className="marquee-header">
           <span className="marquee-title">Featured Companies</span>
@@ -127,6 +133,10 @@ export default function HomeTab() {
           </div>
         </div>
       </section>
+
+      {/* Featured AZN Labs App Spotlight (Any Alarm default) */}
+      <AznAppSpotlight defaultAppId="anyalarm" onOpenShowcase={() => setShowModal(true)} />
+
       <section className="featured-tracks-section">
         <h2 className="section-heading">Featured Interview Tracks</h2>
         
@@ -155,6 +165,7 @@ export default function HomeTab() {
               })}
             </div>
           </div>
+
           <div className="track-card">
             <div className="track-icon-wrapper" style={{ background: 'rgba(0, 184, 163, 0.15)', color: '#00b8a3' }}>
               <Zap size={24} />
@@ -179,6 +190,7 @@ export default function HomeTab() {
               })}
             </div>
           </div>
+
           <div className="track-card">
             <div className="track-icon-wrapper" style={{ background: 'rgba(56, 189, 248, 0.15)', color: '#38bdf8' }}>
               <Layers size={24} />
@@ -205,6 +217,7 @@ export default function HomeTab() {
           </div>
         </div>
       </section>
+
       <section className="highlights-banner">
         <div className="highlight-box">
           <div className="highlight-icon">
@@ -236,6 +249,12 @@ export default function HomeTab() {
           </div>
         </div>
       </section>
+
+      {/* Full AZN Labs Ecosystem Showcase */}
+      <AznAppsShowcase />
+
+      {/* Modal Dialog */}
+      <AznAppsModal isOpen={showModal} onClose={() => setShowModal(false)} />
     </div>
   );
 }

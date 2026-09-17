@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useApp } from './context/AppContext';
 import Header from './components/Header';
 import HomeTab from './components/HomeTab';
@@ -6,13 +6,15 @@ import CompanyGrid from './components/CompanyGrid';
 import CompanyDetail from './components/CompanyDetail';
 import GlobalSearchTab from './components/GlobalSearchTab';
 import UserTracker from './components/UserTracker';
+import AznAppsModal from './components/apps/AznAppsModal';
 
 export default function App() {
   const { activeTab, selectedCompanySlug } = useApp();
+  const [showAppsModal, setShowAppsModal] = useState(false);
 
   return (
     <div className="app-container">
-      <Header />
+      <Header onOpenApps={() => setShowAppsModal(true)} />
 
       <main className="main-content">
         {selectedCompanySlug ? (
@@ -36,13 +38,29 @@ export default function App() {
       }}>
         <div style={{ maxWidth: '1440px', margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '1rem' }}>
           <div>
-            <strong>LeetCompanies Explorer</strong> • <span className="azn-brand-badge">BY AZN LABS</span>
+            <strong>Leet Companies</strong> •{' '}
+            <button 
+              onClick={() => setShowAppsModal(true)}
+              style={{ background: 'transparent', border: 'none', cursor: 'pointer', padding: 0 }}
+              title="Explore AZN Labs Android Apps"
+            >
+              <span className="azn-brand-badge">BY AZN LABS</span>
+            </button>
           </div>
-          <div>
-            Real interview questions archive across 470+ companies
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+            <button
+              onClick={() => setShowAppsModal(true)}
+              style={{ background: 'none', border: 'none', color: 'var(--accent-lc)', cursor: 'pointer', fontSize: '0.8rem', fontWeight: 600 }}
+            >
+              More Apps (Any Alarm, NET, MineSaves)
+            </button>
+            <span>•</span>
+            <span>Real interview questions archive across 470+ companies</span>
           </div>
         </div>
       </footer>
+
+      <AznAppsModal isOpen={showAppsModal} onClose={() => setShowAppsModal(false)} />
     </div>
   );
 }
