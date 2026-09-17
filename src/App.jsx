@@ -47,7 +47,9 @@ export default function App() {
               <span className="azn-brand-badge">BY AZN LABS</span>
             </button>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+            <span style={{ color: '#10b981', fontWeight: 600 }}>🔒 100% Client-Side Local Storage</span>
+            <span>•</span>
             <button
               onClick={() => setShowAppsModal(true)}
               style={{ background: 'none', border: 'none', color: 'var(--accent-lc)', cursor: 'pointer', fontSize: '0.8rem', fontWeight: 600 }}
@@ -55,7 +57,7 @@ export default function App() {
               More Apps (Any Alarm, NET, MineSaves)
             </button>
             <span>•</span>
-            <span>Real interview questions archive across 470+ companies</span>
+            <span>470+ Companies Question Archive</span>
           </div>
         </div>
       </footer>

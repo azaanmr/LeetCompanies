@@ -11,7 +11,8 @@ import {
   Trash2, 
   Sparkles,
   Trophy,
-  Flame
+  Flame,
+  ShieldCheck
 } from 'lucide-react';
 
 export default function UserTracker() {
@@ -129,6 +130,25 @@ export default function UserTracker() {
           </div>
         </div>
       </section>
+
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '0.85rem',
+        padding: '0.85rem 1.25rem',
+        background: 'rgba(16, 185, 129, 0.08)',
+        border: '1px solid rgba(16, 185, 129, 0.25)',
+        borderRadius: '12px',
+        marginBottom: '1.75rem',
+        fontSize: '0.85rem',
+        color: 'var(--text-secondary)'
+      }}>
+        <ShieldCheck size={22} color="#10b981" style={{ flexShrink: 0 }} />
+        <div>
+          <strong style={{ color: '#10b981' }}>100% Client-Side & Local Storage:</strong> Your progress, bookmarks, and notes are saved directly in your browser with zero logins or cloud tracking. Use <strong>Export Progress</strong> anytime to backup or transfer your data across devices.
+        </div>
+      </div>
+
       <div className="detail-metrics-row" style={{ marginBottom: '2rem' }}>
         <div className="detail-metric-card" style={{ background: 'var(--bg-secondary)' }}>
           <span className="detail-metric-val">{solvedCount}</span>

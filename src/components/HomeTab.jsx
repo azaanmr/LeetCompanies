@@ -14,7 +14,8 @@ import {
   ShieldCheck, 
   Zap,
   Code2,
-  Trophy
+  Trophy,
+  Lock
 } from 'lucide-react';
 
 const AVAILABLE_COMPANIES_WITH_LOGOS = [
@@ -241,11 +242,11 @@ export default function HomeTab() {
 
         <div className="highlight-box">
           <div className="highlight-icon">
-            <Code2 size={22} color="var(--accent-blue)" />
+            <Lock size={22} color="var(--accent-blue)" />
           </div>
           <div>
-            <h4>Personal Progress Tracking</h4>
-            <p>Check off solved problems, bookmark questions, and keep notes stored locally.</p>
+            <h4>100% Local Storage & Private</h4>
+            <p>Zero sign-ins, zero tracking. All solved problems, starred questions, and notes remain strictly in your browser.</p>
           </div>
         </div>
       </section>
