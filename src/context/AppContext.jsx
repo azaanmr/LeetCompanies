@@ -99,6 +99,23 @@ export function AppProvider({ children }) {
       window.removeEventListener('popstate', handleLocationChange);
     };
   }, []);
+
+  // Dynamic Document Title based on Active View & Selected Company
+  useEffect(() => {
+    if (selectedCompanySlug) {
+      const company = companies.find((c) => c.slug === selectedCompanySlug);
+      const name = company ? company.name : selectedCompanySlug.replace(/-/g, ' ').replace(/\b\w/g, (l) => l.toUpperCase());
+      document.title = `${name} LeetCode Questions & Frequency Sheet (2026) | Leet Companies`;
+    } else if (activeTab === 'companies') {
+      document.title = 'Browse 470+ Companies LeetCode Question Sheets | Leet Companies';
+    } else if (activeTab === 'search') {
+      document.title = 'Multi-Company Overlap Matrix & Problem Search | Leet Companies';
+    } else if (activeTab === 'tracker') {
+      document.title = 'My Interview Prep Progress Tracker | Leet Companies';
+    } else {
+      document.title = 'Leet Companies — Free LeetCode Company Wise Questions & Frequency Tags (470+ Companies)';
+    }
+  }, [activeTab, selectedCompanySlug, companies]);
   useEffect(() => {
     async function loadInitialData() {
       try {
