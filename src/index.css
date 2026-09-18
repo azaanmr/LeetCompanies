@@ -180,33 +180,35 @@ button {
 .nav-inner {
   max-width: 1440px;
   margin: 0 auto;
-  padding: 0.85rem 2rem;
+  padding: 0.65rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
 .nav-brand {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.65rem;
   font-weight: 700;
   font-size: 1.15rem;
   color: var(--text-primary);
   cursor: pointer;
+  flex-shrink: 0;
 }
 
 .nav-brand-logo {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   border-radius: var(--radius-md);
   background: linear-gradient(135deg, #ffa116, #ff6b00);
   color: #fff;
   box-shadow: 0 4px 12px rgba(255, 161, 22, 0.35);
+  flex-shrink: 0;
 }
 
 .nav-brand-text-group {
@@ -215,41 +217,50 @@ button {
   gap: 0.45rem;
 }
 
+.nav-brand-text img {
+  width: 200px;
+  height: auto;
+  display: block;
+}
+
 .nav-brand-text span {
   color: var(--accent-lc);
 }
 
 .azn-brand-badge {
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   font-weight: 700;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   background: rgba(56, 189, 248, 0.12);
   color: var(--accent-blue);
-  padding: 0.15rem 0.45rem;
+  padding: 0.12rem 0.45rem;
   border-radius: var(--radius-sm);
   border: 1px solid rgba(56, 189, 248, 0.25);
+  white-space: nowrap;
 }
 
 .nav-tabs {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.35rem;
   background: var(--bg-tertiary);
   padding: 0.25rem;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-subtle);
+  flex-shrink: 0;
 }
 
 .nav-tab-btn {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.5rem 1rem;
-  font-size: 0.875rem;
+  padding: 0.45rem 0.85rem;
+  font-size: 0.84rem;
   font-weight: 500;
   color: var(--text-secondary);
   border-radius: var(--radius-sm);
+  white-space: nowrap;
   transition: all var(--transition-fast);
 }
 
@@ -267,20 +278,29 @@ button {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 0.75rem;
+  gap: 0.55rem;
+  flex-shrink: 0;
+}
+
+.nav-actions .action-btn-secondary,
+.nav-actions .action-btn-primary {
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .nav-stat-pill {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
   background: var(--bg-tertiary);
   border: 1px solid var(--border-subtle);
-  padding: 0.4rem 0.85rem;
+  padding: 0.4rem 0.75rem;
   border-radius: var(--radius-full);
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   font-weight: 500;
   color: var(--text-secondary);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .nav-stat-val {
@@ -293,13 +313,14 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 34px;
+  height: 34px;
   border-radius: var(--radius-md);
   background: var(--bg-tertiary);
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
   transition: all var(--transition-fast);
+  flex-shrink: 0;
 }
 
 .icon-btn:hover {
@@ -1611,6 +1632,117 @@ button {
 .gap-md { gap: 1rem; }
 .wrap { flex-wrap: wrap; }
 
+/* =========================================
+   CHROME EXTENSION SPOTLIGHT & MODAL STYLES
+   ========================================= */
+.ext-spotlight-banner {
+  background: linear-gradient(135deg, rgba(255, 161, 22, 0.08) 0%, rgba(17, 22, 34, 0.95) 100%);
+  border: 1px solid rgba(255, 161, 22, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem 1.75rem;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  position: relative;
+  overflow: hidden;
+}
+
+.ext-spotlight-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 250px;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(255, 161, 22, 0.12), transparent 70%);
+  pointer-events: none;
+}
+
+.ext-spotlight-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.ext-spotlight-left {
+  display: flex;
+  align-items: center;
+  gap: 1.15rem;
+  flex: 1;
+  min-width: 280px;
+}
+
+.ext-icon-badge {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(255, 161, 22, 0.25), rgba(255, 107, 0, 0.15));
+  border: 1px solid rgba(255, 161, 22, 0.45);
+  color: #ffa116;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(255, 161, 22, 0.2);
+}
+
+.ext-spotlight-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.ext-pill-badge {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  background: rgba(255, 161, 22, 0.18);
+  color: #ffa116;
+  padding: 0.12rem 0.5rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 161, 22, 0.4);
+}
+
+.ext-spotlight-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.02em;
+}
+
+.ext-spotlight-desc {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  max-width: 620px;
+}
+
+.ext-spotlight-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.step-num-badge {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: rgba(255, 161, 22, 0.2);
+  color: #ffa116;
+  border: 1px solid rgba(255, 161, 22, 0.4);
+  font-size: 0.7rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+
 /* Hide Netlify Collaborative Drawer & Deploy Badge */
 #netlify-drawer,
 .netlify-drawer,
@@ -1625,4 +1757,5 @@ div[id*="netlify-drawer"] {
   height: 0 !important;
   width: 0 !important;
 }
+
 

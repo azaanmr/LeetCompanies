@@ -7,21 +7,26 @@ import CompanyDetail from './components/CompanyDetail';
 import GlobalSearchTab from './components/GlobalSearchTab';
 import UserTracker from './components/UserTracker';
 import AznAppsModal from './components/apps/AznAppsModal';
+import ExtensionModal from './components/extension/ExtensionModal';
 
 export default function App() {
   const { activeTab, selectedCompanySlug } = useApp();
   const [showAppsModal, setShowAppsModal] = useState(false);
+  const [showExtensionModal, setShowExtensionModal] = useState(false);
 
   return (
     <div className="app-container">
-      <Header onOpenApps={() => setShowAppsModal(true)} />
+      <Header 
+        onOpenApps={() => setShowAppsModal(true)} 
+        onOpenExtension={() => setShowExtensionModal(true)} 
+      />
 
       <main className="main-content">
         {selectedCompanySlug ? (
           <CompanyDetail />
         ) : (
           <>
-            {activeTab === 'home' && <HomeTab />}
+            {activeTab === 'home' && <HomeTab onOpenExtension={() => setShowExtensionModal(true)} />}
             {activeTab === 'companies' && <CompanyGrid />}
             {activeTab === 'search' && <GlobalSearchTab />}
             {activeTab === 'tracker' && <UserTracker />}
@@ -54,6 +59,13 @@ export default function App() {
             <span style={{ color: '#10b981', fontWeight: 600 }}>🔒 100% Client-Side Local Storage</span>
             <span>•</span>
             <button
+              onClick={() => setShowExtensionModal(true)}
+              style={{ background: 'none', border: 'none', color: '#ffa116', cursor: 'pointer', fontSize: '0.8rem', fontWeight: 700 }}
+            >
+              Chrome Extension 🧩
+            </button>
+            <span>•</span>
+            <button
               onClick={() => setShowAppsModal(true)}
               style={{ background: 'none', border: 'none', color: 'var(--accent-lc)', cursor: 'pointer', fontSize: '0.8rem', fontWeight: 600 }}
             >
@@ -66,6 +78,8 @@ export default function App() {
       </footer>
 
       <AznAppsModal isOpen={showAppsModal} onClose={() => setShowAppsModal(false)} />
+      <ExtensionModal isOpen={showExtensionModal} onClose={() => setShowExtensionModal(false)} />
     </div>
   );
 }
+

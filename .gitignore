@@ -8,7 +8,7 @@ data/
 public/data/
 
 # Internal Project Notes & App Specs
-apps/
+apps-fulldes/
 scripts/raw/
 google*.html
 !public/google*.html

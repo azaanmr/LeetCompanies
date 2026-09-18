@@ -4,6 +4,7 @@ import CompanyLogo from './CompanyLogo';
 import AznAppSpotlight from './apps/AznAppSpotlight';
 import AznAppsShowcase from './apps/AznAppsShowcase';
 import AznAppsModal from './apps/AznAppsModal';
+import ExtensionBanner from './extension/ExtensionBanner';
 import { 
   Building2, 
   Search, 
@@ -27,7 +28,7 @@ const AVAILABLE_COMPANIES_WITH_LOGOS = [
   { name: 'Goldman Sachs', slug: 'goldman-sachs', tag: 'Investment Banking' }
 ];
 
-export default function HomeTab() {
+export default function HomeTab({ onOpenExtension }) {
   const { selectCompany, setActiveTab, companies } = useApp();
   const [quickQuery, setQuickQuery] = useState('');
   const [showModal, setShowModal] = useState(false);
@@ -134,6 +135,9 @@ export default function HomeTab() {
           </div>
         </div>
       </section>
+
+      {/* Chrome Extension Banner */}
+      <ExtensionBanner onOpenModal={onOpenExtension} />
 
       {/* Featured AZN Labs App Spotlight (Any Alarm default) */}
       <AznAppSpotlight defaultAppId="anyalarm" onOpenShowcase={() => setShowModal(true)} />

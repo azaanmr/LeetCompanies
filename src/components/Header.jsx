@@ -9,10 +9,11 @@ import {
   Moon, 
   CheckCircle2, 
   Code2,
-  Smartphone
+  Smartphone,
+  Puzzle
 } from 'lucide-react';
 
-export default function Header({ onOpenApps }) {
+export default function Header({ onOpenApps, onOpenExtension }) {
   const {
     theme,
     toggleTheme,
@@ -36,9 +37,9 @@ export default function Header({ onOpenApps }) {
           <div className="nav-brand-logo" style={{ overflow: 'hidden', padding: '1px', background: 'transparent', boxShadow: 'none' }}>
             <img src="/icon-192.png" alt="Leet Companies Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
           </div>
-          <div className="nav-brand-text-group" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.1rem', marginTop: '0.2rem' }}>
+          <div className="nav-brand-text-group" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.1rem', marginTop: '0.15rem' }}>
             <div className="nav-brand-text">
-              <img src="/logo-cropped.svg" alt="Leet Companies" style={{ width: '260px', height: 'auto', display: 'block' }} />
+              <img src="/logo-cropped.svg" alt="Leet Companies" style={{ width: '195px', height: 'auto', display: 'block' }} />
             </div>
             <button 
               type="button"
@@ -92,6 +93,26 @@ export default function Header({ onOpenApps }) {
         <div className="nav-actions">
           <button
             className="action-btn-secondary"
+            onClick={onOpenExtension}
+            style={{ 
+              padding: '0.45rem 0.85rem', 
+              fontSize: '0.8rem', 
+              borderRadius: '8px', 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '0.4rem',
+              borderColor: 'rgba(255, 161, 22, 0.4)',
+              background: 'rgba(255, 161, 22, 0.08)',
+              color: '#ffa116'
+            }}
+            title="Download Leet Companies Chrome Extension (v1.0.2)"
+          >
+            <Puzzle size={14} />
+            <span style={{ fontWeight: 700 }}>Extension</span>
+          </button>
+
+          <button
+            className="action-btn-secondary"
             onClick={onOpenApps}
             style={{ 
               padding: '0.45rem 0.85rem', 
@@ -100,8 +121,8 @@ export default function Header({ onOpenApps }) {
               display: 'flex', 
               alignItems: 'center', 
               gap: '0.4rem',
-              borderColor: 'rgba(255, 161, 22, 0.35)',
-              color: 'var(--accent-lc)'
+              borderColor: 'var(--border-subtle)',
+              color: 'var(--text-secondary)'
             }}
             title="Explore AZN Labs Android Apps (Any Alarm, NET, MineSaves)"
           >
