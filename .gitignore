@@ -4,8 +4,7 @@
 
 # Proprietary Datasets & Scraped Archive
 CSV DATA/
-data/
-public/data/
+companies/
 
 # Internal Project Notes & App Specs
 apps-fulldes/
