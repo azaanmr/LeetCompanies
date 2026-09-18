@@ -65,14 +65,32 @@ export default function App() {
               Chrome Extension 🧩
             </button>
             <span>•</span>
+            <a 
+              href="https://github.com/azaanmr/LeetCompanies" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.8rem', fontWeight: 600 }}
+              title="View Website Source Code on GitHub"
+            >
+              GitHub (Web) ↗
+            </a>
+            <span>•</span>
+            <a 
+              href="https://github.com/azaanmr/LeetCompanies-Extension" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              style={{ color: 'var(--text-secondary)', textDecoration: 'none', fontSize: '0.8rem', fontWeight: 600 }}
+              title="View Chrome Extension Source Code on GitHub"
+            >
+              GitHub (Extension) ↗
+            </a>
+            <span>•</span>
             <button
               onClick={() => setShowAppsModal(true)}
               style={{ background: 'none', border: 'none', color: 'var(--accent-lc)', cursor: 'pointer', fontSize: '0.8rem', fontWeight: 600 }}
             >
               More Apps (Any Alarm, NET, MineSaves)
             </button>
-            <span>•</span>
-            <span>470+ Companies Question Archive</span>
           </div>
         </div>
       </footer>

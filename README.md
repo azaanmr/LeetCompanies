@@ -5,9 +5,9 @@
 
   <p>
     <a href="https://leetcompanies.netlify.app"><img src="https://img.shields.io/badge/Live_ON-leetcompanies.netlify.app-ffa116?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live On" /></a>
-    <a href="https://github.com/MuhammadAzaan/Leetcode-Companies/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License" /></a>
+    <a href="https://github.com/azaanmr/LeetCompanies/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License" /></a>
+    <a href="https://github.com/azaanmr/LeetCompanies-Extension"><img src="https://img.shields.io/badge/Chrome_Extension-v1.0.2-ffa116?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Extension" /></a>
     <img src="https://img.shields.io/badge/React-19-61dafb?style=for-the-badge&logo=react&logoColor=black" alt="React 19" />
-    <img src="https://img.shields.io/badge/Vite-6-646cff?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
     <img src="https://img.shields.io/badge/Storage-100%25_Local-10b981?style=for-the-badge&logo=safari&logoColor=white" alt="100% Local Storage" />
   </p>
 </div>
@@ -57,8 +57,8 @@ Unlike other interview tools, **Leet Companies requires no sign-ups and performs
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/Leetcode-Companies.git
-   cd Leetcode-Companies
+   git clone https://github.com/azaanmr/LeetCompanies.git
+   cd LeetCompanies
    ```
 
 2. **Install dependencies**:
@@ -107,6 +107,6 @@ This project is open-source and available under the [MIT License](LICENSE).
 ---
 
 <div align="center">
-  <sub>Developed with ❤️ by <a href="https://github.com/MuhammadAzaan">Muhammad Azaan M R</a> • Part of the <strong>AZN Labs</strong> Ecosystem</sub>
+  <sub>Developed with ❤️ by <a href="https://github.com/azaanmr">Muhammad Azaan M R</a> • Part of the <strong>AZN Labs</strong> Ecosystem</sub>
 </div>
 

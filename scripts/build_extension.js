@@ -833,6 +833,7 @@ const extReadme = `<div align="center">
 
   <p>
     <a href="https://leetcompanies.netlify.app"><img src="https://img.shields.io/badge/Live_Web_App-leetcompanies.netlify.app-ffa116?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live On" /></a>
+    <a href="https://github.com/azaanmr/LeetCompanies-Extension"><img src="https://img.shields.io/badge/GitHub-Repository-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" /></a>
     <img src="https://img.shields.io/badge/Manifest-V3-646cff?style=for-the-badge" alt="Manifest V3" />
     <img src="https://img.shields.io/badge/Storage-100%25_Offline-10b981?style=for-the-badge" alt="Offline" />
     <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License" />

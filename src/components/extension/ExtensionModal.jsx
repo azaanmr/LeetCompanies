@@ -408,7 +408,7 @@ export default function ExtensionModal({ isOpen, onClose }) {
           </div>
 
           <a
-            href="https://github.com/MuhammadAzaan/Leetcode-Companies-Extension"
+            href="https://github.com/azaanmr/LeetCompanies-Extension"
             target="_blank"
             rel="noopener noreferrer"
             style={{ display: 'inline-flex', alignItems: 'center', gap: '0.3rem', color: 'var(--accent-lc)', fontWeight: 600 }}
