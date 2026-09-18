@@ -4,7 +4,7 @@
   <p><strong>Explore 470+ Company-Wise LeetCode Interview Questions, Frequency Heatmaps & Overlap Matrix</strong></p>
 
   <p>
-    <a href="https://leetcompanies.netlify.app"><img src="https://img.shields.io/badge/Live_Demo-leetcompanies.netlify.app-ffa116?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live On" /></a>
+    <a href="https://leetcompanies.netlify.app"><img src="https://img.shields.io/badge/Live_ON-leetcompanies.netlify.app-ffa116?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Live On" /></a>
     <a href="https://github.com/MuhammadAzaan/Leetcode-Companies/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" alt="License" /></a>
     <img src="https://img.shields.io/badge/React-19-61dafb?style=for-the-badge&logo=react&logoColor=black" alt="React 19" />
     <img src="https://img.shields.io/badge/Vite-6-646cff?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
@@ -92,6 +92,14 @@ Check out our native Android tools available on the Google Play Store:
 
 ---
 
+## ⚖️ Disclaimer
+
+* This project is an independent open-source tool developed purely for educational and interview preparation purposes.
+* "LeetCode" and related trademarks are the property of LeetCode LLC. This project is not affiliated with, endorsed by, or sponsored by LeetCode or any of the mentioned companies.
+* All company names, logos, and trademarks mentioned belong to their respective holders.
+
+---
+
 ## 📄 License
 
 This project is open-source and available under the [MIT License](LICENSE).
@@ -101,3 +109,4 @@ This project is open-source and available under the [MIT License](LICENSE).
 <div align="center">
   <sub>Developed with ❤️ by <a href="https://github.com/MuhammadAzaan">Muhammad Azaan M R</a> • Part of the <strong>AZN Labs</strong> Ecosystem</sub>
 </div>
+
