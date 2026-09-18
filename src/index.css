@@ -1610,3 +1610,19 @@ button {
 .gap-sm { gap: 0.5rem; }
 .gap-md { gap: 1rem; }
 .wrap { flex-wrap: wrap; }
+
+/* Hide Netlify Collaborative Drawer & Deploy Badge */
+#netlify-drawer,
+.netlify-drawer,
+[data-netlify-deploy-preview],
+[class*="netlify-drawer"],
+iframe[src*="netlify"],
+div[id*="netlify-drawer"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  height: 0 !important;
+  width: 0 !important;
+}
+

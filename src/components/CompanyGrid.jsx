@@ -131,7 +131,8 @@ export default function CompanyGrid() {
 
       <AznAppStrip 
         appId="anyalarm" 
-        customText="⏰ Hardcore wake-up alarms for early morning interviews. Math puzzles, QR scans & GPS transit alerts." 
+        headline="⚡ All types of alarms in one powerful app"
+        customText="GPS Commute Alarm, Math puzzles, Barcode/QR scanner & Step counter challenges." 
       />
 
       {displayedList.length > 0 ? (

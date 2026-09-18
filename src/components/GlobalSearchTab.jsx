@@ -180,7 +180,8 @@ export default function GlobalSearchTab() {
 
           <AznAppStrip 
             appId="anyalarm" 
-            customText="⏰ Stay disciplined during interview season. Any Alarm forces you awake with Math & QR scanning challenges." 
+            headline="🚌 Never miss your stop in a bus or train again!"
+            customText="Set destination radius & battery-optimized GPS location alarm wakes you up right on arrival." 
           />
 
           {displayedList.length > 0 ? (

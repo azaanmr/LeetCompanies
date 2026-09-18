@@ -42,10 +42,13 @@ export default function App() {
             <button 
               onClick={() => setShowAppsModal(true)}
               style={{ background: 'transparent', border: 'none', cursor: 'pointer', padding: 0 }}
-              title="Explore AZN Labs Android Apps"
+              title="Developed by Muhammad Azaan M R • AZN Labs"
             >
               <span className="azn-brand-badge">BY AZN LABS</span>
             </button>
+            <span style={{ marginLeft: '0.65rem', color: 'var(--text-muted)', fontSize: '0.78rem' }}>
+              Crafted by <strong style={{ color: 'var(--text-secondary)' }}>Muhammad Azaan M R</strong>
+            </span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', flexWrap: 'wrap', justifyContent: 'center' }}>
             <span style={{ color: '#10b981', fontWeight: 600 }}>🔒 100% Client-Side Local Storage</span>

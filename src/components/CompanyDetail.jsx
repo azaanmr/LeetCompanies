@@ -285,7 +285,8 @@ export default function CompanyDetail() {
 
       <AznAppStrip 
         appId="anyalarm" 
-        customText="⏰ Early morning technical rounds? Stop snoozing with Any Alarm — Math challenges, QR barcode scans & GPS arrival alerts." 
+        headline="⏰ Early morning technical rounds?"
+        customText="Stop snoozing. Any Alarm forces you awake with Math challenges, QR barcode scans & GPS arrival alerts." 
       />
 
       <ProblemTable

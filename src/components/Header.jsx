@@ -31,7 +31,7 @@ export default function Header({ onOpenApps }) {
         <div 
           className="nav-brand" 
           onClick={() => handleTabClick('home')}
-          title="Leet Companies Home"
+          title="Leet Companies • Created by Muhammad Azaan M R (AZN Labs)"
         >
           <div className="nav-brand-logo" style={{ overflow: 'hidden', padding: '1px', background: 'transparent', boxShadow: 'none' }}>
             <img src="/icon-192.png" alt="Leet Companies Logo" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
@@ -48,7 +48,7 @@ export default function Header({ onOpenApps }) {
               }}
               className="azn-brand-badge" 
               style={{ transform: 'scale(0.8)', transformOrigin: 'right top', marginRight: '0.2rem', cursor: 'pointer', border: 'none' }}
-              title="View all Android apps from AZN Labs"
+              title="AZN Labs • Created by Muhammad Azaan M R (Click to view Android apps)"
             >
               BY AZN LABS
             </button>
