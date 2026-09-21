@@ -27,6 +27,10 @@ dist/
 .env.production.local
 .env.*.local
 env.js
+src/config/adminSecret.js
+adminSecret.js
+*adminSecret*
+*secret*.js
 
 # Debug & Execution Logs
 *.log

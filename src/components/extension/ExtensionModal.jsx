@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { trackDownload } from '../../services/analytics';
 import { 
   X, 
   Download, 
@@ -128,6 +129,7 @@ export default function ExtensionModal({ isOpen, onClose }) {
             <a 
               href="/downloads/leetcode-companies-extension.zip" 
               download="leetcode-companies-extension.zip"
+              onClick={() => trackDownload('zip')}
               className="action-btn-primary"
               style={{
                 width: '100%',
@@ -169,6 +171,7 @@ export default function ExtensionModal({ isOpen, onClose }) {
             <a 
               href="/downloads/leetcode-companies-extension.crx" 
               download="leetcode-companies-extension.crx"
+              onClick={() => trackDownload('crx')}
               className="action-btn-secondary"
               style={{
                 width: '100%',

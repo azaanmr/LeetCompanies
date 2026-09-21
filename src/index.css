@@ -55,6 +55,15 @@
   --transition-normal: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spin-icon {
+  animation: spin 1s linear infinite;
+}
+
 [data-theme='light'] {
   --bg-primary: #f8fafc;
   --bg-secondary: #ffffff;

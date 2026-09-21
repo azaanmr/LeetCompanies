@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { AZN_APPS } from '../../data/appsData';
+import { trackAppInstallClick } from '../../services/analytics';
 import { X, Smartphone, ExternalLink, Star, Sparkles } from 'lucide-react';
 
 export default function AznAppsModal({ isOpen, onClose }) {
@@ -88,6 +89,7 @@ export default function AznAppsModal({ isOpen, onClose }) {
                   href={app.playStoreUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackAppInstallClick(app.id)}
                   className="playstore-btn"
                   style={{ fontSize: '0.775rem', padding: '0.45rem 0.9rem' }}
                 >

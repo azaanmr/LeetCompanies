@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { AZN_APPS } from '../../data/appsData';
+import { trackAppInstallClick } from '../../services/analytics';
 import { ExternalLink, Sparkles, Smartphone, CheckCircle } from 'lucide-react';
 
 export default function AznAppSpotlight({ defaultAppId = 'anyalarm', onOpenShowcase }) {
@@ -59,6 +60,7 @@ export default function AznAppSpotlight({ defaultAppId = 'anyalarm', onOpenShowc
             href={app.playStoreUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackAppInstallClick(app.id)}
             className="playstore-btn"
           >
             <Smartphone size={16} />

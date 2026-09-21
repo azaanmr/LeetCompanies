@@ -6,11 +6,12 @@ import CompanyGrid from './components/CompanyGrid';
 import CompanyDetail from './components/CompanyDetail';
 import GlobalSearchTab from './components/GlobalSearchTab';
 import UserTracker from './components/UserTracker';
+import AdminDashboard from './components/admin/AdminDashboard';
 import AznAppsModal from './components/apps/AznAppsModal';
 import ExtensionModal from './components/extension/ExtensionModal';
 
 export default function App() {
-  const { activeTab, selectedCompanySlug } = useApp();
+  const { activeTab, setActiveTab, selectedCompanySlug } = useApp();
   const [showAppsModal, setShowAppsModal] = useState(false);
   const [showExtensionModal, setShowExtensionModal] = useState(false);
 
@@ -30,6 +31,7 @@ export default function App() {
             {activeTab === 'companies' && <CompanyGrid />}
             {activeTab === 'search' && <GlobalSearchTab />}
             {activeTab === 'tracker' && <UserTracker />}
+            {activeTab === 'admin' && <AdminDashboard onExitAdmin={() => setActiveTab('home')} />}
           </>
         )}
       </main>
@@ -90,6 +92,14 @@ export default function App() {
               style={{ background: 'none', border: 'none', color: 'var(--accent-lc)', cursor: 'pointer', fontSize: '0.8rem', fontWeight: 600 }}
             >
               More Apps (Any Alarm, NET, MineSaves)
+            </button>
+            <span>•</span>
+            <button
+              onClick={() => setActiveTab('admin')}
+              style={{ background: 'none', border: 'none', color: 'var(--text-muted)', cursor: 'pointer', fontSize: '0.8rem', fontWeight: 500 }}
+              title="Admin & Analytics Dashboard"
+            >
+              Admin ⚙️
             </button>
           </div>
         </div>

@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { trackPageView, trackCompanySheetView } from '../services/analytics';
 
 const AppContext = createContext();
 
@@ -13,6 +14,9 @@ function parseHash(hashStr) {
   const clean = (hashStr || '').replace(/^#\/?/, '').trim();
   if (!clean || clean === 'home') {
     return { tab: 'home', company: null };
+  }
+  if (clean === 'admin') {
+    return { tab: 'admin', company: null };
   }
   if (clean.startsWith('company/')) {
     const slug = clean.split('company/')[1]?.split('?')[0]?.trim();
@@ -82,10 +86,14 @@ export function AppProvider({ children }) {
 
   // Listen to Browser Back / Forward buttons & Hash Changes
   useEffect(() => {
+    // Initial page view track
+    trackPageView(window.location.hash || '#/');
+
     const handleLocationChange = () => {
       const { tab, company } = parseHash(window.location.hash);
       setActiveTabState(tab);
       setSelectedCompanySlugState(company);
+      trackPageView(window.location.hash || '#/');
     };
 
     window.addEventListener('hashchange', handleLocationChange);
@@ -112,6 +120,8 @@ export function AppProvider({ children }) {
       document.title = 'Multi-Company Overlap Matrix & Problem Search | Leet Companies';
     } else if (activeTab === 'tracker') {
       document.title = 'My Interview Prep Progress Tracker | Leet Companies';
+    } else if (activeTab === 'admin') {
+      document.title = 'AZN Analytics Admin Dashboard | Leet Companies';
     } else {
       document.title = 'Leet Companies — Free LeetCode Company Wise Questions & Frequency Tags (470+ Companies)';
     }
@@ -162,6 +172,8 @@ export function AppProvider({ children }) {
   };
 
   const selectCompany = (slug) => {
+    const comp = companies.find((c) => c.slug === slug);
+    trackCompanySheetView(slug, comp ? comp.name : slug);
     setSelectedCompanySlugState(slug);
     setActiveTabState('companies');
     window.location.hash = `#/company/${slug}`;
